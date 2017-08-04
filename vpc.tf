@@ -36,6 +36,7 @@ resource "aws_route" "rancher_ha" {
     depends_on             = ["aws_vpc.rancher_ha", "aws_internet_gateway.rancher_ha"]
 }
 
+# http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-dns.html#vpc-dns-support
 resource "aws_vpc_dhcp_options" "rancher_dns" {
     domain_name         = "ec2.internal"
     domain_name_servers = ["169.254.169.253", "AmazonProvidedDNS"]

@@ -17,6 +17,11 @@ resource "aws_rds_cluster" "rancher_ha" {
     master_password        = "${var.db_pass}"
     db_subnet_group_name   = "${aws_db_subnet_group.rancher_ha.name}"
     vpc_security_group_ids = ["${aws_security_group.rancher_ha_rds.id}"]
+    # WARNING: this will destroy your cluster without snapshots
+    skip_final_snapshot    = true
+    # final_snapshot_identifier = ""
+# Use final_snapshot_identifier if you prefer to keep a snapshot on deletion (preferrd) 
+# https://www.terraform.io/docs/providers/aws/r/rds_cluster.html#final_snapshot_identifier
 }
 
 resource "aws_db_subnet_group" "rancher_ha" {

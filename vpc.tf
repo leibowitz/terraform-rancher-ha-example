@@ -11,7 +11,7 @@ resource "aws_vpc" "rancher_ha" {
 }
 
 resource "aws_subnet" "rancher_ha" {
-    count                   = "3"
+    count                   = "${length(var.subnet_cidrs)}"
     vpc_id                  = "${aws_vpc.rancher_ha.id}"
     cidr_block              = "${element(var.subnet_cidrs, count.index)}"
     availability_zone       = "${element(var.availability_zones, count.index)}"

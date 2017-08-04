@@ -10,10 +10,13 @@ region = "eu-west-1"
 
 # https://github.com/rancher/os/blob/master/README.md#amazon
 ami = "ami-64b2a802"
+# for future, ecs enable amis
+# http://rancher.com/docs/os/amazon-ecs/#amazon-ecs-enabled-amis
 
 count = "1"
 
-instance_type = "t2.nano"
+# https://aws.amazon.com/ec2/instance-types/
+instance_type = "t2.small"
 
 availability_zones = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
 subnet_cidrs = ["192.168.199.0/26", "192.168.199.64/26", "192.168.199.128/26"]

@@ -16,6 +16,7 @@ resource "aws_subnet" "rancher_ha" {
     cidr_block              = "${element(var.subnet_cidrs, count.index)}"
     availability_zone       = "${element(var.availability_zones, count.index)}"
     map_public_ip_on_launch = true
+    depends_on = ["aws_vpc.rancher_ha"]
     tags {
       Name = "${var.name_prefix}-subnet-${count.index}"
     }

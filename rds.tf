@@ -2,10 +2,10 @@
 # RDS Database Configuration
 #------------------------------------------#
 resource "aws_rds_cluster_instance" "rancher_ha" {
-    count                = 2
+    count                = 1
     identifier           = "${var.name_prefix}-db-${count.index}"
     cluster_identifier   = "${aws_rds_cluster.rancher_ha.id}"
-    instance_class       = "db.r3.large"
+    instance_class       = "db.t2.small"
     publicly_accessible  = false
     db_subnet_group_name = "${aws_db_subnet_group.rancher_ha.name}"
 }

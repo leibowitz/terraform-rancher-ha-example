@@ -1,25 +1,40 @@
 #------------------------------------------#
-# AWS EC2 Configuration
+# AWS ASG Configuration
 #------------------------------------------#
-resource "aws_instance" "rancher_ha" {
-    count                       = "${var.count}"
-    ami                         = "${var.ami}"
-    instance_type               = "${var.instance_type}"
-    key_name                    = "${var.key_name}"
-    user_data                   = "${data.template_file.install.rendered}"
-    subnet_id                   = "${element(sort(aws_subnet.rancher_ha.*.id), count.index)}"
+resource "aws_launch_configuration" "rancher_ha" {
+  name_prefix     = "${var.name_prefix}-conf-"
+  image_id        = "${var.ami}"
+  instance_type   = "${var.instance_type}"
+  key_name        = "${var.key_name}"
+  security_groups = ["${aws_security_group.rancher_ha.id}"]
+  user_data       = "${data.template_file.install.rendered}"
+  root_block_device {
+      volume_size = "${var.root_volume_size}"
+      delete_on_termination = true
+  }
 
-    vpc_security_group_ids = ["${aws_security_group.rancher_ha.id}"]
+  depends_on = ["aws_rds_cluster_instance.rancher_ha"]
 
-    tags {
-        Name = "${var.name_prefix}-${count.index}"
-    }
+  lifecycle {
+    create_before_destroy = true
+  }
+}
 
-    root_block_device {
-        volume_size = "${var.root_volume_size}"
-        delete_on_termination = true
-    }
-    depends_on = ["aws_rds_cluster_instance.rancher_ha"]
+resource "aws_autoscaling_group" "rancher_ha" {
+  name_prefix     = "${var.name_prefix}-asg-"
+  availability_zones       = "${var.availability_zones}"
+  vpc_zone_identifier = ["${aws_subnet.rancher_ha.*.id}"]
+  launch_configuration = "${aws_launch_configuration.rancher_ha.name}"
+  load_balancers = ["${var.name_prefix}-elb-http"]
+  health_check_type         = "ELB"
+  min_size             = 1
+  desired_capacity = 1
+  max_size             = 2
+  protect_from_scale_in = true
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 data "template_file" "install" {

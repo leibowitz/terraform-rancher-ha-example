@@ -17,7 +17,29 @@ variable "name_prefix" {
 }
 
 variable "ami" {
-    default     = "ami-dfdff3c8"
+    default     = "ami-067c4a10"
+    description = "Instance AMI ID"
+}
+
+variable "amis" {
+    # https://github.com/rancher/os/blob/master/README.md#amazon
+    default     = {
+            #"ami-dfdff3c8"
+            "eu-west-1" = "ami-64b2a802"
+            "eu-west-2" = "ami-4806102c"
+            "ap-south-1" = "ami-3576085a"
+            "ap-northeast-1" = "ami-8bb1a7ec"
+            "ap-northeast-2" = "ami-9d03dcf3"
+            "sa-east-1" = "ami-ae1b71c2"
+            "ca-central-1" = "ami-4fa7182b"
+            "ap-southeast-1" = "ami-4f921c2c"
+            "ap-southeast-2" = "ami-d64c5fb5"
+            "eu-central-1" = "ami-8c52f4e3"
+            "us-east-1" = "ami-067c4a10"
+            "us-east-2" = "ami-b74b6ad2"
+            "us-west-1" = "ami-04351964"
+            "us-west-2" = "ami-bed0c7c7"
+    }
     description = "Instance AMI ID"
 }
 

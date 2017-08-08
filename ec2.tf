@@ -3,7 +3,7 @@
 #------------------------------------------#
 resource "aws_launch_configuration" "rancher_ha" {
   name_prefix     = "${var.name_prefix}-conf-"
-  image_id        = "${var.ami}"
+  image_id = "${lookup(var.amis, var.region)}"
   instance_type   = "${var.instance_type}"
   key_name        = "${var.key_name}"
   security_groups = ["${aws_security_group.rancher_ha.id}"]

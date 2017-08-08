@@ -30,7 +30,7 @@ resource "aws_autoscaling_group" "rancher_ha" {
   min_size             = 1
   desired_capacity = 1
   max_size             = 2
-  protect_from_scale_in = true
+  #protect_from_scale_in = true
 
   lifecycle {
     create_before_destroy = true

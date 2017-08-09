@@ -39,9 +39,9 @@ resource "aws_elb" "rancher_ha_https" {
 resource "aws_iam_server_certificate" "rancher_ha" {
     count             = "${var.enable_https}"
     name_prefix       = "${var.name_prefix}-certificate"
-    certificate_body  = "${file("${var.cert_body}")}"
-    private_key       = "${file("${var.cert_private_key}")}"
-    certificate_chain = "${file("${var.cert_chain}")}"
+    certificate_body  = "${acme_certificate.certificate.certificate_pem}"
+    certificate_chain = "${acme_certificate.certificate.issuer_pem}"
+    private_key       = "${acme_certificate.certificate.private_key_pem}"
 
     lifecycle {
         create_before_destroy = true

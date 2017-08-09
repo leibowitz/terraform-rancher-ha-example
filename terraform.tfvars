@@ -22,7 +22,10 @@ availability_zones = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
 subnet_cidrs = ["192.168.199.0/26", "192.168.199.64/26", "192.168.199.128/26"]
 
 # To enable SSL termination on the ELBs, uncomment the lines below.
-# enable_https = true
+enable_https = true
+#cert_body = "${acme_certificate.certificate.certificate_pem}"
+#cert_chain = "${acme_certificate.certificate.issuer_pem}"
+#cert_private_key = "${acme_certificate.certificate.private_key_pem}"
 # cert_body = "certs/cert1.pem"              # Signed Certificate
 # cert_private_key = "certs/privkey1.pem"    # Certificate Private Key
 # cert_chain = "certs/chain1.pem"            # CA chain

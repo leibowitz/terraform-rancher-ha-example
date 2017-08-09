@@ -25,7 +25,7 @@ resource "aws_autoscaling_group" "rancher_ha" {
   availability_zones       = "${var.availability_zones}"
   vpc_zone_identifier = ["${aws_subnet.rancher_ha.*.id}"]
   launch_configuration = "${aws_launch_configuration.rancher_ha.name}"
-  load_balancers = ["${var.name_prefix}-elb-http"]
+  load_balancers = ["${var.name_prefix}-elb-https"]
   health_check_type         = "ELB"
   min_size             = 1
   desired_capacity = 1

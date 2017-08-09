@@ -9,7 +9,6 @@ db_pass = "rancherdbpass"
 region = "eu-west-1"
 
 # https://github.com/rancher/os/blob/master/README.md#amazon
-ami = "ami-64b2a802"
 # for future, ecs enable amis
 # http://rancher.com/docs/os/amazon-ecs/#amazon-ecs-enabled-amis
 

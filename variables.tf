@@ -38,15 +38,9 @@ variable "name_prefix" {
     description = "Prefix for all AWS resource names"
 }
 
-variable "ami" {
-    default     = "ami-067c4a10"
-    description = "Instance AMI ID"
-}
-
 variable "amis" {
     # https://github.com/rancher/os/blob/master/README.md#amazon
     default     = {
-            #"ami-dfdff3c8"
             "eu-west-1" = "ami-64b2a802"
             "eu-west-2" = "ami-4806102c"
             "ap-south-1" = "ami-3576085a"

@@ -50,7 +50,6 @@ terraform destroy
 * **region**: AWS region (default: `us-east-1`)
 * **count**: number of HA servers to deploy (default: `3`)
 * **name_prefix**: prefix for all AWS resource names (default: `rancher-ha`)
-* **ami**: instance AMI ID (default: `ami-067c4a10`; RancherOS in us-east-1)
 * **key_name**: SSH key name in your AWS account for AWS instances (required)
 * **instance_type**: AWS instance type (default: `t2.large` for RAM requirement)
 * **root_volume_size**: size in GB of the instance root volume (default: `16`)

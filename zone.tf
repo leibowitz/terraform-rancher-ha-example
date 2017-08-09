@@ -5,7 +5,7 @@ resource "aws_route53_record" "rancher-ha" {
 
   alias {
     name                   = "${aws_elb.rancher_ha_https.dns_name}"
-    zone_id                   = "${aws_elb.rancher_ha_https.zone_id}"
+    zone_id                = "${aws_elb.rancher_ha_https.zone_id}"
     evaluate_target_health = false
   }
 }

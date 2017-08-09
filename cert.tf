@@ -12,9 +12,9 @@ resource "acme_registration" "reg" {
 
 # Create a certificate
 resource "acme_certificate" "certificate" {
-  server_url       = "${var.cert_server_url}"
-  account_key_pem  = "${tls_private_key.private_key.private_key_pem}"
-  common_name      = "${var.record_name}"
+  server_url      = "${var.cert_server_url}"
+  account_key_pem = "${tls_private_key.private_key.private_key_pem}"
+  common_name     = "${var.record_name}"
 
   dns_challenge {
     provider = "route53"

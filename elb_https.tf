@@ -22,7 +22,6 @@ resource "aws_elb" "rancher_ha_https" {
         interval            = 30
     }
 
-    availability_zones       = "${var.availability_zones}"
     subnets         = ["${aws_subnet.rancher_ha.*.id}"]
     security_groups = ["${aws_security_group.rancher_ha_elb.id}"]
 

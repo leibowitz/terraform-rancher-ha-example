@@ -21,6 +21,18 @@ variable "record_name" {
     description = "FQDN to access rancher UI"
 }
 
+# https://github.com/paybyphone/terraform-provider-acme
+variable "cert_email_address" {
+    default     = ""
+    description = "The email address that will be attached as a contact to the registration"
+}
+
+# Use https://acme-v01.api.letsencrypt.org/directory for production
+variable "cert_server_url" {
+    default     = "https://acme-staging.api.letsencrypt.org/directory"
+    description = "The URL of the ACME directory endpoint"
+}
+
 variable "name_prefix" {
     default     = "rancher-ha"
     description = "Prefix for all AWS resource names"

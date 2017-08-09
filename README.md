@@ -57,6 +57,10 @@ terraform destroy
 
 > Note: if you use an AMI other than RancherOS, the automatic launching of the Rancher server container will not work. You will need to update the user-data template according to the needs of your AMI.
 
+### DNS
+* **zone_id**: Hosted Zone ID in AWS Route53
+* **record_name**: The FQDN you will access rancher from (rancher.example.com)
+
 ### Database
 * **db_name**: name of the RDS DB (default: `rancher`)
 * **db_user**: username used to connect to the RDS database (default: `rancher`)
@@ -64,6 +68,8 @@ terraform destroy
 
 ### SSL
 * **enable_https**: enable HTTPS termination on the loadbalancer (default: `false`)
+* **cert_email_address**: The email address used to generate the SSL certificate
+* **cert_server_url**:  (default: `https://acme-staging.api.letsencrypt.org/directory`)
 
 ### Rancher
 * **rancher_version**: Rancher version to deploy (default: `stable`)

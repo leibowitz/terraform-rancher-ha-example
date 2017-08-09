@@ -12,6 +12,8 @@ resource "aws_elb" "rancher_ha_https" {
     lb_port            = 443
     lb_protocol        = "ssl"
     ssl_certificate_id = "${aws_iam_server_certificate.rancher_ha.arn}"
+    # Aternatively, you can reference a certificate from ACM instead
+    #ssl_certificate_id = "${data.aws_acm_certificate.rancher_ha_cert.arn}"
   }
 
   health_check {
@@ -34,6 +36,13 @@ resource "aws_elb" "rancher_ha_https" {
     Name = "${var.name_prefix}-elb-https"
   }
 }
+
+# Uncomment this if you want to define a certificate in ACM
+#data "aws_acm_certificate" "rancher_ha_cert" {
+#  domain = "${var.record_name}"
+#  statuses = ["ISSUED"]
+#}
+
 
 # https://www.terraform.io/docs/providers/aws/r/iam_server_certificate.html
 resource "aws_iam_server_certificate" "rancher_ha" {

@@ -11,6 +11,16 @@ variable "count" {
     description = "Number of HA servers to deploy"
 }
 
+variable "zone_id" {
+    default     = ""
+    description = "Hosted Zone ID for adding the rancher host"
+}
+
+variable "record_name" {
+    default     = ""
+    description = "FQDN to access rancher UI"
+}
+
 variable "name_prefix" {
     default     = "rancher-ha"
     description = "Prefix for all AWS resource names"

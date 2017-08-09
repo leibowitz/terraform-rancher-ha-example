@@ -35,12 +35,17 @@ resource "aws_elb" "rancher_ha_https" {
     }
 }
 
+# https://www.terraform.io/docs/providers/aws/r/iam_server_certificate.html
 resource "aws_iam_server_certificate" "rancher_ha" {
     count             = "${var.enable_https}"
-    name              = "${var.name_prefix}-certificate"
+    name_prefix       = "${var.name_prefix}-certificate"
     certificate_body  = "${file("${var.cert_body}")}"
     private_key       = "${file("${var.cert_private_key}")}"
     certificate_chain = "${file("${var.cert_chain}")}"
+
+    lifecycle {
+        create_before_destroy = true
+    }
 }
 
 resource "aws_proxy_protocol_policy" "rancher_ha_https_proxy_policy" {

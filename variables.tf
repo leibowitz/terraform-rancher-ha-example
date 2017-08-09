@@ -118,18 +118,6 @@ variable "enable_https" {
     description = "Enable HTTPS termination on the loadbalancer"
 }
 
-variable "cert_body" {
-    default = ""
-}
-
-variable "cert_private_key" {
-    default = ""
-}
-
-variable "cert_chain" {
-    default = ""
-}
-
 #------------------------------------------#
 # Rancher Variables
 #------------------------------------------#

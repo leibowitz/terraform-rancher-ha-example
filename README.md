@@ -67,9 +67,6 @@ terraform destroy
 
 ### SSL
 * **enable_https**: enable HTTPS termination on the loadbalancer (default: `false`)
-* **cert_body**: required if `enable_https` is set to `true`
-* **cert_private_key**: required if `enable_https` is set to `true`
-* **cert_chain**: required if `enable_https` is set to `true`
 
 ### Rancher
 * **rancher_version**: Rancher version to deploy (default: `stable`)
